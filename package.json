@@ -4,7 +4,19 @@
   "description": "Ticketing cinema app",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "",
+    "lint": "eslint --fix ./",
+    "start": "node -r dotenv/config dist/app.js",
+    "migrate": "babel-node ./src/database/scripts/migrate",
+    "seed": "babel-node ./src/database/scripts/seed",
+    "seed:undo": "babel-node ./src/database/scripts/seed-rollback",
+    "migrate:undo": "babel-node ./src/database/scripts/rollback",
+    "db:migrate": "node ./dist/database/scripts/migrate",
+    "db:migrate:undo": "node ./dist/database/scripts/rollback",
+    "db:seed": "node ./src/database/scripts/seed",
+    "db:seed:undo": "node ./src/database/scripts/seed-rollback",
+    "watch": "nodemon --exec babel-node -r ./node_modules/dotenv/config ./src/index.js",
+    "build": "babel src -d dist"
   },
   "repository": {
     "type": "git",
@@ -21,6 +33,34 @@
   },
   "homepage": "https://github.com/b0nbon1/Kencinema#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "child-process-promise": "^2.2.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "lodash.merge": "^4.6.2",
+    "nodemon": "^2.0.2",
+    "pg": "^7.18.2",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^5.21.5",
+    "sequelize-cli": "^5.5.1",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/node": "^7.8.4",
+    "@babel/polyfill": "^7.8.3",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/register": "^7.8.3",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.20.1",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.7"
+  },
+  "lint-staged": {
+    "src/**/*.js": [
+      "npm run lint",
+      "git add"
+    ]
   }
 }

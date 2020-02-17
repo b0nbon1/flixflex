@@ -1,0 +1,44 @@
+version: '3'
+services:
+  app:
+    container_name: kencinema
+    restart: always
+    env_file: .env
+    environment:
+      - NODE_ENV=$NODE_ENV
+    build: .
+    ports:
+      - '9456:3000'
+    networks: 
+      - kencinema
+  postgres1:
+    container_name: postgres1
+    image: postgres:10.4
+    ports:
+      - "35432:5432"
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=kencinem_dev
+    ports:
+      - "35432:5432"
+    networks: 
+      - kencinema
+  postgres2:
+    container_name: postgres2
+    image: postgres:10.4
+    ports:
+      - "35432:5432"
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=kencinem_test
+    ports:
+      - "35430:5432"
+    networks: 
+      - kencinema
+volumes: 
+  my_dbdata:
+networks: 
+  kencinema:
+    driver: bridge
