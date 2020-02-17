@@ -1,0 +1,26 @@
+{
+  "name": "kencinema",
+  "version": "0.0.1",
+  "description": "Ticketing cinema app",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/b0nbon1/Kencinema.git"
+  },
+  "keywords": [
+    "cinema",
+    "booking"
+  ],
+  "author": "bonvic <nyabuyabonvic@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/b0nbon1/Kencinema/issues"
+  },
+  "homepage": "https://github.com/b0nbon1/Kencinema#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
