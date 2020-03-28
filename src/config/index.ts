@@ -1,7 +1,6 @@
-/* eslint-disable global-require */
-/* eslint-disable import/no-dynamic-require */
-const merge = require('lodash.merge');
-const dotenv = require('dotenv');
+import merge from 'lodash.merge';
+import dotenv from 'dotenv';
+
 const config = require('./env/default');
 
 
@@ -16,9 +15,7 @@ if (process.env.NODE_ENV !== 'production') {
   } catch (err) {
     localConfig = {};
   }
-  // merge the config files
-  // localConfig will override defaults
   merge(config, localConfig);
 }
 
-module.exports = config;
+export default config;

@@ -3,6 +3,4 @@
 # Ignoring the following folders/files
 dist/
 .nyc_output/
-src/config/
 src/database/
-src/models/
