@@ -1,13 +1,10 @@
-const dotenv = require('dotenv');
+import dotenv from 'dotenv';
 
 dotenv.config();
 const config = {
   PORT: process.env.PORT || 3080,
   secret: process.env.SECRET,
-  database: {
-    url: process.env.DATABASE_URL,
-    dialect: 'postgres',
-  },
+  databaseUrl: process.env.DATABASE_URL,
   debug: false,
   env: process.env.NODE_ENV || 'development'
 };
