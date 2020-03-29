@@ -22,7 +22,7 @@ const main = async (): Promise<void> => {
 
   apolloServer.applyMiddleware({ app });
 
-  app.listen(4000, () => {
+  app.listen(3000, () => {
     logger.info('server started at 🚀 http://localhost:4000');
   });
 };

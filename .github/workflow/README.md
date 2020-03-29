@@ -65,7 +65,7 @@ This describes the kind of change that this commit is providing.
 * :bug: (bug fix)
 * :pencil: (documentation)
 * :lipstick: (formatting, missing semi colons, …)
-* :recycle:
+* :recycle: 
 * :white_check_mark: (when adding missing tests)
 * :wrench: (maintain)
 
@@ -142,7 +142,7 @@ The description of the PR should contain the following headings and correspondin
 It is our belief that PR reviews should not negatively impact a team's ability to deliver features.
 PRs that take too much time to get reviewed can hinder on a team's progress. As such, we practice the following behaviours when raising PRs:
 
-- When I raise a PR, I specifically assign a developer or [engineering team](https://github.com/orgs/andela/teams/technology/teams) as reviewer
+- When I raise a PR, I specifically assign a developer
 - When I raise a PR, I notify the reviewer(s) on Slack in a public channel
 - The reviewer(s) can re-assign the PR to someone else (e.g. TTL re-assigning to a Senior Engineer)
 - The reviewer(s) has a **3 hours SLA** to review the PR
@@ -227,56 +227,3 @@ Acceptance Criteria:
 Working CI integration with circle CI.
 ```
 
-### Repo Readme
-***
-There's a lot we can do to encourage code reuse, sharing and onboarding of new team members. For instance, Every github repo should fill in the short description and website link at the top. Also, a github repository needs a proper Readme to best help out our teammates.
-
-The belief here is that a repo should have a few defining traits to make it easy for anyone to understand it's purpose, set it up, run it's tests, and work towards contributing to it.
-
-Each Repo's readme should follow this basic structure:
-
-```
-## Repo Name [codeclimate badge] [testing badge]
-
-1 sentence tag line
-
-# Description
-
-3-5 sentences describing the code and what it's purpose is
-
-## Documentation
-
-List of endpoints exposed by the service
-
-## Setup
-
-Step by step instructions on how to get the code setup locally. This may include:
-
-### Dependencies
-
-List of libraries, tools, etc needed (e.g. yarn, node.js, python, etc)
-
-### Getting Started
-
-List of steps to get started (e.g. clone repo, submodule, .env file, etc)
-
-### Run The Service
-
-List of steps to run the service (e.g. docker commands)
-
-### Microservices
-
-List out the microservices if any that this repo uses
-
-## Testing
-
-Step by step instructions on how to run the tests so that the developer can be sure they've set up the code correctly
-
-## Contribute
-
-Any instructions needed to help others contribute to this repository
-
-## Deployment
-
-Step by step instructions so that the developer can understand how code gets updated
-```

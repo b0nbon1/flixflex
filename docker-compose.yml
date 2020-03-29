@@ -8,7 +8,7 @@ services:
       - NODE_ENV=$NODE_ENV
     build: .
     ports:
-      - '9456:3000'
+      - '9456:4000'
     networks: 
       - kencinema
   postgres1:
