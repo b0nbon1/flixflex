@@ -1,6 +1,5 @@
 [![Build Status](https://travis-ci.org/b0nbon1/Kencinema.svg?branch=develop)](https://travis-ci.org/b0nbon1/Kencinema)
 [![Coverage Status](https://coveralls.io/repos/github/b0nbon1/Kencinema/badge.svg?branch=develop)](https://coveralls.io/github/b0nbon1/Kencinema?branch=develop)
-[![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com)
 
 # Kencinema - Making cinema hall bookings easy and convinient.
 
@@ -9,7 +8,7 @@ Revolutionize cinema hall booking experience
 
 ---
 
-## GET STARTED
+## GET STARTED 🛫
 
 #### Set up
 
@@ -35,29 +34,23 @@ Revolutionize cinema hall booking experience
        - all seeders run `npm run db:seed:undo`
        - all migrations run `npm run migrate:undo`
 
-#### Run the app
+#### Run the app 🌋
 
 - Run `npm run watch` to start the server
 - Use postman to test the endpoints
 
        
-## Deployment
+## Deployment 🚀🚀
 
 This app will be deployed on heroku, To access this app go to these link:
     - [Production URL](https://https://kencinema.herokuapp.com/.herokuapp.com/)
     - [Staging](https://https://kencinema.herokuapp.com/.herokuapp.com/)
 
-## API DOCUMENTATION
- - [Swagger documentation](https://https://kencinema.herokuapp.com/.herokuapp.com/api/docs)
+## API 🚦
 
-## API Endpoints
+It's is using graphql so navigate to route `https://localhost:<port>/graphql`
 
-| Request Route | Methods  | Description  |
-| ------- | --- | --- |
-| /api/v1/auth/signup | POST | Users can sign up |
-| /api/v1/auth/signin | POST |  Users can sign in  |
-
-## Docker
+## Docker 🐳⚓️
 
 #### Setting Up Docker
 

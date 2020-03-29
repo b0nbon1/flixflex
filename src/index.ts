@@ -3,17 +3,9 @@ import 'reflect-metadata';
 import { createConnection } from 'typeorm';
 import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
-import { buildSchema, Resolver, Query } from 'type-graphql';
 import * as ormConfig from './config/ormconfig';
 import logger from './lib/winston';
-
-@Resolver()
-class HelloResolver {
-  @Query(() => String)
-  async hello(): string {
-    return 'hello world 👋🏾';
-  }
-}
+import { createSchema } from './graphql/schema';
 
 const main = async (): Promise<void> => {
   await createConnection(ormConfig.dbOptions)
@@ -22,9 +14,7 @@ const main = async (): Promise<void> => {
     })
     .catch((error) => logger.error('TypeORM connection error: %o', error));
 
-  const schema = await buildSchema({
-    resolvers: [HelloResolver]
-  });
+  const schema = await createSchema();
 
   const apolloServer = new ApolloServer({ schema });
 
