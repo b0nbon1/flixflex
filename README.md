@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/b0nbon1/Kencinema.svg?branch=develop)](https://travis-ci.org/b0nbon1/Kencinema)
+[![Build Status](https://travis-ci.org/b0nbon1/kencinema-backend.svg?branch=develop)](https://travis-ci.org/b0nbon1/kencinema-backend)
 [![Coverage Status](https://coveralls.io/repos/github/b0nbon1/Kencinema/badge.svg?branch=develop)](https://coveralls.io/github/b0nbon1/Kencinema?branch=develop)
 
 # Kencinema - Making cinema hall bookings easy and convinient.
@@ -26,18 +26,18 @@ Revolutionize cinema hall booking experience
 
     - Make a copy of the .env.example and rename it .env, add the corresponding project variables
 
-- Run migrations using `npm run migrate`
+- Run migrations using `<migration script>`
 
-- Run `npm run db:seed` for commit the seeds to the database
+- Run `<seed script>` for commit the seeds to the database
 
 - To undo:
-       - all seeders run `npm run db:seed:undo`
-       - all migrations run `npm run migrate:undo`
+       - all seeders run `<undo seed script>`
+       - all migrations run `<undo migration script>`
 
 #### Run the app 🌋
 
 - Run `npm run watch` to start the server
-- Use postman to test the endpoints
+- Use `https://localhost:<port>/graphql` it will provide a graphql playground
 
        
 ## Deployment 🚀🚀
@@ -64,7 +64,7 @@ It's is using graphql so navigate to route `https://localhost:<port>/graphql`
 
 5. Run `docker images` to assure that image was successfully created
 
-6. Run `docker run -p <given port>:3000 -d <your username>/<image name>` to run your image
+6. Run `docker run -p <given port>:4000 -d <your username>/<image name>` to run your image
 
 #### Run app on Docker
 
@@ -74,6 +74,8 @@ It's is using graphql so navigate to route `https://localhost:<port>/graphql`
 
 3. Run `docker exec -it <container id> sh` to enter container
 
-4. Run `npm migrate` followed by ` npx sequelize-cli db:seed:all`
+4. Run `<undo migration script>` followed by `<undo migration script>`
 
-5. Run `npm run watch` and test endpoint using postman using route `http://localhost:3000/<endpointroute>`
+5. Run `npm run watch` and test endpoint using postman using route `http://localhost:4000/graphql`
+
+
