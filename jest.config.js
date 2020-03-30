@@ -7,7 +7,9 @@ module.exports = {
   ],
   coveragePathIgnorePatterns: [
       "node_modules",
+      "<rootDir>/dist/",
       "<rootDir>/src/test-utils/",
+      "<rootDir>/src/database/",
       "interfaces",
       "jestGlobalMocks.ts",
       "<rootDir>/src/config/",
@@ -15,4 +17,16 @@ module.exports = {
       "<rootDir>/src/index.ts",
       ".mock.ts"
   ],
+  testPathIgnorePatterns:[
+    "node_modules",
+    "<rootDir>/dist/",
+    "<rootDir>/src/test-utils/",
+    "<rootDir>/src/database/",
+    "interfaces",
+    "jestGlobalMocks.ts",
+    "<rootDir>/src/config/",
+    "<rootDir>/src/lib/",
+    "<rootDir>/src/index.ts",
+    ".mock.ts"
+  ]
 };

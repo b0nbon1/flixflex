@@ -5,3 +5,4 @@ dist/
 .nyc_output/
 coverage/
 jest.config.js
+src/database/

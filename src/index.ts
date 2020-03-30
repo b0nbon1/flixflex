@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 /* eslint-disable require-jsdoc */
 import 'reflect-metadata';
 import { createConnection } from 'typeorm';
@@ -8,7 +9,7 @@ import logger from './lib/winston';
 import { createSchema } from './graphql/schema';
 
 const main = async (): Promise<void> => {
-  await createConnection(ormConfig.dbOptions)
+  await createConnection(ormConfig)
     .then(async () => {
       logger.info('Connected to DB');
     })
