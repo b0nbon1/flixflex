@@ -1,16 +1,17 @@
 import { ConnectionOptions } from 'typeorm';
 import config from './index';
 
-export const dbOptions: ConnectionOptions = {
+const dbOptions: ConnectionOptions = {
   type: 'postgres',
   logging: true,
   logger: 'file',
   url: config.databaseUrl,
-  entities: ['src/models/*{.ts,.js}'],
-  synchronize: true,
-  migrations: ['src/migration/*{.ts,.js}'],
+  entities: ['dist/models/*{.ts,.js}'],
+  synchronize: false,
+  migrations: ['dist/database/migration'],
   cli: {
     entitiesDir: 'src/models',
-    migrationsDir: 'src/migration'
+    migrationsDir: 'src/database/migration'
   }
 };
+export = dbOptions;
