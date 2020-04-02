@@ -1,5 +1,3 @@
-/* eslint-disable max-classes-per-file */
-/* eslint-disable require-jsdoc */
 import 'reflect-metadata';
 import { createConnection } from 'typeorm';
 import { ApolloServer } from 'apollo-server-express';
@@ -17,14 +15,20 @@ const main = async (): Promise<void> => {
 
   const schema = await createSchema();
 
-  const apolloServer = new ApolloServer({ schema });
+  const apolloServer = new ApolloServer({
+    schema
+  });
 
   const app = express();
 
   apolloServer.applyMiddleware({ app });
 
-  app.listen(3000, () => {
-    logger.info('server started at 🚀 http://localhost:4000');
+  app.listen(4000, () => {
+    logger.info(
+      `\
+graphql server started at 🚀   http://localhost:4000${apolloServer.graphqlPath} \
+      `
+    );
   });
 };
 

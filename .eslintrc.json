@@ -29,7 +29,8 @@
         "jest/no-focused-tests": "error",
         "jest/no-identical-title": "error",
         "jest/prefer-to-have-length": "warn",
-        "jest/valid-expect": "error"
+        "jest/valid-expect": "error",
+        "import/no-extraneous-dependencies": "off"
       }
     }
   ],
@@ -46,6 +47,7 @@
     }
   },
   "rules": {
+    "camelcase": "off",
     "import/prefer-default-export": 0,
     "class-methods-use-this": 0,
     "arrow-parens":"off",

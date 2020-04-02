@@ -7,7 +7,7 @@ const dbOptions: ConnectionOptions = {
   logger: 'file',
   url: config.databaseUrl,
   entities: ['dist/models/*{.ts,.js}'],
-  synchronize: false,
+  synchronize: true,
   migrations: ['dist/database/migration'],
   cli: {
     entitiesDir: 'src/models',

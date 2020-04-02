@@ -20,7 +20,7 @@ export class CinemaRoom extends BaseEntity {
   @Column()
   lastName: string;
 
-  @ManyToOne((type) => Cinema, (cinema) => cinema.id)
+  @ManyToOne(() => Cinema, (cinema) => cinema.id)
   cinemaId: Cinema;
 
   @CreateDateColumn()
