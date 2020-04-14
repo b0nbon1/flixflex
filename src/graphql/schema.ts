@@ -1,5 +1,6 @@
 import { buildSchema, Resolver, Query } from 'type-graphql';
 import { GraphQLSchema } from 'graphql';
+import { RegisterResolver } from '../modules/User/register/Register';
 
 @Resolver()
 class WelcomeResolver {
@@ -11,5 +12,5 @@ class WelcomeResolver {
 
 export const createSchema = (): Promise<GraphQLSchema> =>
   buildSchema({
-    resolvers: [WelcomeResolver]
+    resolvers: [WelcomeResolver, RegisterResolver]
   });
