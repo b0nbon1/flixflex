@@ -34,11 +34,11 @@ export class Cinema extends BaseEntity {
   @Column()
   status: string;
 
-  @OneToOne((type) => Location)
+  @OneToOne(() => Location)
   @JoinColumn()
   location: Location;
 
-  @OneToOne((type) => User)
+  @OneToOne(() => User)
   @JoinColumn()
   user: User;
 

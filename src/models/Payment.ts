@@ -20,7 +20,7 @@ export class Payment extends BaseEntity {
   @Column()
   paymentType: string;
 
-  @ManyToOne((type) => User, (user) => user.id)
+  @ManyToOne(() => User, (user) => user.id)
   userId: User;
 
   @Column()

@@ -7,7 +7,6 @@ import config from '../config';
 
 const auth = {
   auth: {
-    // eslint-disable-next-line @typescript-eslint/camelcase
     api_key: config.mailgunKey,
     domain: config.mailgunUrl
   }

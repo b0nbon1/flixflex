@@ -23,7 +23,7 @@ export class CinemaRating extends BaseEntity {
   @Column('text')
   feedback: string;
 
-  @ManyToOne((type) => User, (user) => user.id)
+  @ManyToOne(() => User, (user) => user.id)
   userId: User;
 
   @CreateDateColumn()

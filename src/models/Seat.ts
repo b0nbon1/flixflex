@@ -23,7 +23,7 @@ export class Seat extends BaseEntity {
   @Column()
   isBooked: boolean;
 
-  @ManyToOne((type) => CinemaRoom, (cinemaRoom) => cinemaRoom.id)
+  @ManyToOne(() => CinemaRoom, (cinemaRoom) => cinemaRoom.id)
   roomId: CinemaRoom;
 
   @CreateDateColumn()

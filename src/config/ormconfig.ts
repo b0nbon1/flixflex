@@ -14,4 +14,5 @@ const dbOptions: ConnectionOptions = {
     migrationsDir: 'src/database/migration'
   }
 };
-export = dbOptions;
+
+export default dbOptions;

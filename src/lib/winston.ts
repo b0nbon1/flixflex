@@ -1,12 +1,5 @@
 /* eslint-disable require-jsdoc */
-import {
-  createLogger,
-  format,
-  transports,
-  LoggerOptions,
-  Logger,
-  LeveledLogMethod
-} from 'winston';
+import { createLogger, format, transports } from 'winston';
 
 const { combine, timestamp, simple, json } = format;
 
@@ -27,16 +20,7 @@ const myCustomLevels: Record<string, any> = {
   }
 };
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-function createWinstonLogger<T>(
-  options?: Pick<LoggerOptions, Exclude<keyof LoggerOptions, 'levels'>> & {
-    levels: T;
-  }
-) {
-  return createLogger(options) as Logger & Record<keyof T, LeveledLogMethod>;
-}
-
-const logger = createWinstonLogger({
+const logger = createLogger({
   level: 'debug',
   levels: myCustomLevels.levels,
   format: combine(timestamp(), json(), format.splat()),
@@ -57,7 +41,5 @@ const logger = createWinstonLogger({
   ],
   exitOnError: false
 });
-
-logger.protocol({});
 
 export default logger;

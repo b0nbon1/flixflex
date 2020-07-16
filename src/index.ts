@@ -2,17 +2,16 @@ import 'reflect-metadata';
 import { createConnection } from 'typeorm';
 import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
-import * as ormConfig from './config/ormconfig';
+import ormConfig from './config/ormconfig';
 import logger from './lib/winston';
 import { createSchema } from './graphql/schema';
 
-const main = async (): Promise<void> => {
+async function bootstrap() {
   await createConnection(ormConfig)
     .then(async () => {
       logger.info('Connected to DB');
     })
     .catch((error) => logger.error('TypeORM connection error: %o', error));
-
   const schema = await createSchema();
 
   const apolloServer = new ApolloServer({
@@ -30,6 +29,6 @@ graphql server started at 🚀   http://localhost:4000${apolloServer.graphqlPath
       `
     );
   });
-};
+}
 
-main();
+bootstrap();

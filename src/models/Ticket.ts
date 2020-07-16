@@ -16,18 +16,18 @@ export class Ticket extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @OneToOne((type) => Movie)
+  @OneToOne(() => Movie)
   @JoinColumn()
   movieId: Movie;
 
-  @OneToOne((type) => Payment)
+  @OneToOne(() => Payment)
   @JoinColumn()
   paymentId: Payment;
 
   @Column()
   date: Date;
 
-  @OneToOne((type) => Seat)
+  @OneToOne(() => Seat)
   @JoinColumn()
   seatId: Seat;
 

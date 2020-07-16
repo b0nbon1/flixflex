@@ -20,7 +20,7 @@ export class Notification extends BaseEntity {
   @Column()
   message: string;
 
-  @ManyToOne((type) => User, (user) => user.id)
+  @ManyToOne(() => User, (user) => user.id)
   userId: User;
 
   @Column()
