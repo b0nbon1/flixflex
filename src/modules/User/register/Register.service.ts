@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-expressions */
 import { getConnection } from 'typeorm';
-import bcrypt from 'bcryptjs';
-import { ImailOptionsObject } from '../../../interfaces/mail';
+import { ImailOptionsObject } from '../../../types/mail';
 import { User } from '../../../models/User';
 import { mailer } from '../../../lib/Mailer';
 import messenger from '../../../lib/Sms';
+import { hashPassword } from '../../../utils/hash';
 // import config from '../../../config';
 
 const sendMail = async (mailOptions: ImailOptionsObject): Promise<void> => {
@@ -33,7 +33,7 @@ const registerService = async (
     Math.random() * (1000000 - 100000 + 1) + 100000
   );
 
-  const hashedPassword = await bcrypt.hash(password, 12);
+  const hashedPassword = await hashPassword(password);
 
   const user = await getConnection()
     .createQueryBuilder()

@@ -2,7 +2,7 @@ import ejs from 'ejs';
 import nodemailer from 'nodemailer';
 import mg from 'nodemailer-mailgun-transport';
 import logger from './winston';
-import { Imail } from '../interfaces/mail';
+import { Imail } from '../types/mail';
 import config from '../config';
 
 const auth = {
@@ -15,7 +15,7 @@ const auth = {
 export const mailer = async (mailOptionsObject: Imail): Promise<void> => {
   let msg = {};
   ejs.renderFile(
-    `${__dirname}/../../../public/mail/${mailOptionsObject.htmlPath}`,
+    `${__dirname}/../../public/mail/${mailOptionsObject.htmlPath}`,
     mailOptionsObject.data,
     {},
     (err, html) => {
@@ -37,7 +37,7 @@ export const mailer = async (mailOptionsObject: Imail): Promise<void> => {
 
   await nodemailerMailgun.sendMail(msg, (err, info) => {
     if (err) {
-      logger.error(`${err}`);
+      logger.error(`come on: ${err}`);
     } else {
       logger.info('success sent mail, %o', info);
     }

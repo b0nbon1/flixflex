@@ -9,6 +9,10 @@ export default {
   env: process.env.NODE_ENV || 'development',
   mailgunKey: process.env.MAILGUN_KEY,
   mailgunUrl: process.env.MAILGUN_URL,
+  facebookAuth: {
+    clientID: process.env.FACEBOOK_APP_ID,
+    clientSecret: process.env.FACEBOOK_APP_SECRET
+  },
   twilioConfig: {
     TWILIO_ACCOUNT_SID: process.env.TWILIO_ACCOUNT_SID,
     TWILIO_AUTH_TOKEN: process.env.TWILIO_AUTH_TOKEN,

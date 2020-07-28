@@ -1,4 +1,4 @@
-import { Resolver, Mutation, Arg } from 'type-graphql';
+import { Resolver, Mutation, Arg, Ctx } from 'type-graphql';
 import { User } from '../../../models/User';
 import { RegisterInput } from './RegisterInput';
 import {
@@ -8,6 +8,7 @@ import {
 } from './Register.service';
 import { VerifyInput } from './verify.input';
 import { ResendInput } from './ResendVerification.input';
+import { Context } from '../../../types/Context';
 
 @Resolver()
 export class RegisterResolver {
@@ -20,9 +21,12 @@ export class RegisterResolver {
 
   @Mutation(() => User)
   async verifyAccount(
-    @Arg('data') { verificationCode, id }: VerifyInput
-  ): Promise<User> {
-    return verificationService(verificationCode, id);
+    @Arg('data') { verificationCode, id }: VerifyInput,
+    @Ctx() ctx: Context
+  ): Promise<User | null> {
+    const user = await verificationService(verificationCode, id);
+    ctx.req.session.userId = user.id;
+    return user;
   }
 
   @Mutation(() => User)

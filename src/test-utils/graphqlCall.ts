@@ -8,13 +8,15 @@ interface Options {
   variableValues?: Maybe<{
     [key: string]: any;
   }>;
+  userId?: string;
 }
 
 let schema: GraphQLSchema;
 
 export const gCall = async ({
   source,
-  variableValues
+  variableValues,
+  userId
 }: Options): Promise<any> => {
   if (!schema) {
     schema = await createSchema();
@@ -23,6 +25,16 @@ export const gCall = async ({
   return graphql({
     schema,
     source,
-    variableValues
+    variableValues,
+    contextValue: {
+      req: {
+        session: {
+          userId
+        }
+      },
+      res: {
+        clearCookie: jest.fn()
+      }
+    }
   });
 };

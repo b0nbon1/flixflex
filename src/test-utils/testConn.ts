@@ -1,7 +1,7 @@
 import { createConnection, Connection } from 'typeorm';
 import config from '../config';
 
-export const testConn = (drop = false): Promise<Connection> =>
+export const testConn = async (drop = false): Promise<Connection> =>
   createConnection({
     type: 'postgres',
     logging: false,

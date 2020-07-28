@@ -1,5 +1,5 @@
 import { ConnectionOptions } from 'typeorm';
-import config from './index';
+import config from '.';
 
 const dbOptions: ConnectionOptions = {
   type: 'postgres',

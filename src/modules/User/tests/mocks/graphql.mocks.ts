@@ -36,3 +36,15 @@ mutation Resend($data: ResendInput!) {
   }
 }
 `;
+
+export const loginUserMutation = `
+mutation Login($password: String! $email: String! $phoneNumber: String!) {
+  login(password: $password email: $email phoneNumber: $phoneNumber) {
+    id
+    name
+    active
+    email
+    phone
+  }
+}
+`;
