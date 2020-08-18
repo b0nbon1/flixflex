@@ -8,6 +8,12 @@ import {
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
 
+enum RoleEnum {
+  ADMIN = 'admin',
+  USER = 'user',
+  OWNER = 'owner'
+}
+
 enum Gender {
   Male,
   Female,
@@ -55,6 +61,19 @@ export class User extends BaseEntity {
   @Field()
   @Column({ default: false })
   active: boolean;
+
+  @Field(() => [String], { nullable: true })
+  @Column({
+    type: 'enum',
+    enum: RoleEnum,
+    array: true,
+    default: [RoleEnum.USER]
+  })
+  role: RoleEnum[];
+
+  @Field()
+  @Column({ nullable: true })
+  resetCode: number;
 
   @Field()
   @Column({ default: false })

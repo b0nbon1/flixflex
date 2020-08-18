@@ -17,7 +17,7 @@ const WelcomeQuery = `
   }
 `;
 
-describe('Welcome to cinema tests', () => {
+describe('Welcome to cinema tests suites', () => {
   it('should return welcome to app string', async () => {
     const response = await gCall({
       source: WelcomeQuery

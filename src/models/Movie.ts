@@ -37,7 +37,7 @@ export class Movie extends BaseEntity {
   type: string;
 
   @Column()
-  traillerUrl: string;
+  trailerUrl: string;
 
   @Column('text')
   actors: string;

@@ -6,13 +6,13 @@ import bodyParser from 'body-parser';
 import session from 'express-session';
 import connectRedis from 'connect-redis';
 import cors from 'cors';
-// import morgan from 'morgan';
 import passport from 'passport';
 import dbOptions from './config/ormconfig';
 import logger from './lib/winston';
 import { createSchema } from './graphql/schema';
 import config from './config';
 import { redis } from './redis';
+import { User } from './models/User';
 
 async function bootstrap() {
   await createConnection(dbOptions)
@@ -24,7 +24,16 @@ async function bootstrap() {
 
   const apolloServer = new ApolloServer({
     schema,
-    context: ({ req, res }: any) => ({ req, res })
+    context: async ({ req, res }: any) => {
+      if (req.session.userId) {
+        const user = await User.findOne({
+          where: [{ id: req.session.userId }]
+        });
+
+        req.user = user;
+      }
+      return { req, res };
+    }
   });
 
   const app = express();
@@ -53,7 +62,6 @@ async function bootstrap() {
   );
 
   app.use(passport.initialize());
-  // app.use(morgan('dev'));
   app.get('/', (req, res) =>
     res.status(200).json({ message: 'Welcome to Cinema' })
   );

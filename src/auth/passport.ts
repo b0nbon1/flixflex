@@ -1,13 +1,15 @@
 import FacebookTokenStrategy from 'passport-facebook-token';
 import passport from 'passport';
 import { Strategy as GoogleTokenStrategy } from 'passport-token-google2';
+import { Request, Response } from 'express';
+import config from '../config';
 
 // FACEBOOK STRATEGY
 const FacebookTokenStrategyCallback = (
-  accessToken,
-  refreshToken,
-  profile,
-  done
+  accessToken: string,
+  refreshToken: string,
+  profile: any,
+  done: any
 ) =>
   done(null, {
     accessToken,
@@ -18,8 +20,8 @@ const FacebookTokenStrategyCallback = (
 passport.use(
   new FacebookTokenStrategy(
     {
-      clientID: 'your-facebook-app-id',
-      clientSecret: 'your-facebook-app-secret'
+      clientID: config.facebookAuth.clientID,
+      clientSecret: config.facebookAuth.clientSecret
     },
     FacebookTokenStrategyCallback
   )
@@ -27,10 +29,10 @@ passport.use(
 
 // GOOGLE STRATEGY
 const GoogleTokenStrategyCallback = (
-  accessToken,
-  refreshToken,
-  profile,
-  done
+  accessToken: string,
+  refreshToken: string,
+  profile: any,
+  done: any
 ) =>
   done(null, {
     accessToken,
@@ -41,15 +43,15 @@ const GoogleTokenStrategyCallback = (
 passport.use(
   new GoogleTokenStrategy(
     {
-      clientID: 'your-google-client-id',
-      clientSecret: 'your-google-client-secret'
+      clientID: config.googleAuth.clientID,
+      clientSecret: config.googleAuth.clientSecret
     },
     GoogleTokenStrategyCallback
   )
 );
 
 // promisified authenticate functions
-const authenticateFacebook = (req, res) =>
+export const authenticateFacebook = (req: Request, res: Response): any =>
   new Promise((resolve, reject) => {
     passport.authenticate(
       'facebook-token',
@@ -61,16 +63,14 @@ const authenticateFacebook = (req, res) =>
     )(req, res);
   });
 
-const authenticateGoogle = (req, res) =>
+export const authenticateGoogle = (req: Request, res: Response): any =>
   new Promise((resolve, reject) => {
     passport.authenticate(
       'google-token',
-      { session: true },
+      { session: false, scope: ['profile', 'email'] },
       (err, data, info) => {
         if (err) reject(err);
         resolve({ data, info });
       }
     )(req, res);
   });
-
-module.exports = { authenticateFacebook, authenticateGoogle };

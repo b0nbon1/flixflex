@@ -62,7 +62,9 @@ const registerService = async (
       })
     : sendTxt(verificationCode, phone);
 
-  return user.generatedMaps[0] as User;
+  return User.findOne({
+    where: [{ id: user.generatedMaps[0].id }]
+  });
 };
 
 const verificationService = async (
@@ -90,7 +92,9 @@ const verificationService = async (
     .returning('*')
     .execute();
 
-  return updatedUser.raw[0] as User;
+  return User.findOne({
+    where: [{ id: updatedUser.raw[0].id }]
+  });
 };
 
 const resendVerificationService = async (

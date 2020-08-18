@@ -6,12 +6,12 @@ const dbOptions: ConnectionOptions = {
   logging: true,
   logger: 'file',
   url: config.databaseUrl,
-  entities: ['dist/models/*{.ts,.js}'],
+  entities: ['src/models/*{.ts,.js}'],
   synchronize: true,
-  migrations: ['dist/database/migration'],
+  migrations: ['src/database/migration'],
   cli: {
-    entitiesDir: 'src/models',
-    migrationsDir: 'src/database/migration'
+    entitiesDir: 'dist/models',
+    migrationsDir: 'dist/database/migration'
   }
 };
 
