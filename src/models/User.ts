@@ -8,12 +8,14 @@ import {
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
 
-enum RoleEnum {
+// eslint-disable-next-line no-shadow
+export enum RoleEnum {
   ADMIN = 'admin',
   USER = 'user',
   OWNER = 'owner'
 }
 
+// eslint-disable-next-line no-shadow
 enum Gender {
   Male,
   Female,
@@ -53,10 +55,6 @@ export class User extends BaseEntity {
   @Field(() => String)
   @Column('text', { nullable: true })
   gender: Gender;
-
-  @Field()
-  @Column('date', { nullable: true })
-  dateOfBirth: Date;
 
   @Field()
   @Column({ default: false })

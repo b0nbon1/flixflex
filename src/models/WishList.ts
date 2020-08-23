@@ -15,14 +15,8 @@ export class WishList extends BaseEntity {
   @Column()
   firstName: string;
 
-  @Column()
-  lastName: string;
-
   @Column('text', { unique: true })
   email: string;
-
-  @Column()
-  password: string;
 
   @CreateDateColumn()
   createdAt: Date;

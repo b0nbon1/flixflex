@@ -4,37 +4,24 @@ services:
     container_name: kencinema
     restart: always
     env_file: .env
+    stdin_open: true
+    tty: true
     environment:
       - NODE_ENV=$NODE_ENV
-    build: .
+    build: .:/usr/src/index
     ports:
       - '9456:4000'
     networks: 
       - kencinema
-  postgres1:
-    container_name: postgres1
-    image: postgres:10.4
-    ports:
-      - "35432:5432"
+  db:
+    container_name: app_db
+    image: "postgres:11.5-alpine"
+    volumes:
+      - ./pg-init-scripts:/docker-entrypoint-initdb.d
     environment:
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=kencinem_dev
-    ports:
-      - "35432:5432"
-    networks: 
-      - kencinema
-  postgres2:
-    container_name: postgres2
-    image: postgres:10.4
-    ports:
-      - "35432:5432"
-    environment:
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=kencinem_test
-    ports:
-      - "35430:5432"
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_MULTIPLE_DATABASES=app,app_test
     networks: 
       - kencinema
 volumes: 

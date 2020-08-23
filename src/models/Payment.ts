@@ -24,7 +24,7 @@ export class Payment extends BaseEntity {
   userId: User;
 
   @Column()
-  deductAmmount: string;
+  deductAmount: string;
 
   @CreateDateColumn()
   createdAt: Date;

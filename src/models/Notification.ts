@@ -23,9 +23,6 @@ export class Notification extends BaseEntity {
   @ManyToOne(() => User, (user) => user.id)
   userId: User;
 
-  @Column()
-  password: string;
-
   @CreateDateColumn()
   createdAt: Date;
 

@@ -1,11 +1,11 @@
-import { MiddlewareFn } from 'type-graphql';
+// import { MiddlewareFn } from 'type-graphql';
 
-import { Context } from '../../types/Context';
+// import { Context } from '../../types/Context';
 
-export const isAuth: MiddlewareFn<Context> = async ({ context }, next) => {
-  if (!context.req.session.userId) {
-    throw new Error('not authenticated');
-  }
+// export const isAuth: MiddlewareFn<Context> = async ({ context }, next) => {
+//   if (!context.req.session.userId) {
+//     throw new Error('not authenticated');
+//   }
 
-  return next();
-};
+//   return next();
+// };

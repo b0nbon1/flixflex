@@ -48,3 +48,33 @@ mutation Login($password: String! $email: String! $phoneNumber: String!) {
   }
 }
 `;
+
+export const ProfileQuery = `
+  query {
+    profile {
+      id
+      name
+      active
+      email
+    }
+  }
+`;
+
+export const AllUsersQuery = `
+  query {
+    allUsers {
+      id
+    }
+  }
+`;
+
+export const ProfileMutation = `
+mutation Update($data: ProfileInput!) {
+  updateProfile(data: $data) {
+    id
+    name
+    active
+    email
+  }
+}
+`;

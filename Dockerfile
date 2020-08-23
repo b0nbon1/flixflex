@@ -4,11 +4,11 @@ WORKDIR /usr/src/index
 
 
 COPY ./package.json .
-COPY ./package-lock.json .
+COPY ./yarn.lock .
 
-RUN npm install
+RUN yarn install
 
 COPY . .
 
 EXPOSE 4000
-CMD ["npm", "run", "watch"]
+CMD ["yarn", "start:dev"]

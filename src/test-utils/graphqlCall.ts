@@ -2,6 +2,7 @@
 import { graphql, GraphQLSchema } from 'graphql';
 import { Maybe } from 'graphql/jsutils/Maybe';
 import { createSchema } from '../graphql/schema';
+import { User } from '../models/User';
 
 interface Options {
   source: string;
@@ -9,6 +10,7 @@ interface Options {
     [key: string]: any;
   }>;
   userId?: string;
+  user?: User;
 }
 
 let schema: GraphQLSchema;
@@ -16,7 +18,8 @@ let schema: GraphQLSchema;
 export const gCall = async ({
   source,
   variableValues,
-  userId
+  userId,
+  user
 }: Options): Promise<any> => {
   if (!schema) {
     schema = await createSchema();
@@ -29,7 +32,8 @@ export const gCall = async ({
     contextValue: {
       req: {
         session: {
-          userId
+          userId,
+          user
         }
       },
       res: {

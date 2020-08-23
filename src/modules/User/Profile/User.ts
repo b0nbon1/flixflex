@@ -1,6 +1,7 @@
-import { Resolver, Query, Authorized, Ctx, Mutation } from 'type-graphql';
+import { Resolver, Query, Authorized, Ctx, Mutation, Arg } from 'type-graphql';
 import { User } from '../../../models/User';
 import { Context } from '../../../types/Context';
+import { ProfileInput } from './profile-input';
 
 @Resolver()
 export class UserProfile {
@@ -24,11 +25,18 @@ export class UserProfile {
 
   @Authorized()
   @Mutation(() => User)
-  async updateProfile(@Ctx() ctx: Context): Promise<User> {
+  async updateProfile(
+    @Arg('data') data: ProfileInput,
+    @Ctx() ctx: Context
+  ): Promise<User> {
+    await User.update(ctx.req.session.userId, data);
+
     const user = await User.findOne({
       where: [{ id: ctx.req.session.userId }]
     });
 
     return user;
   }
+
+  // TODO: support profile picture
 }
