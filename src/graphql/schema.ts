@@ -5,6 +5,7 @@ import { LoginResolver } from '../modules/User/Login/Login';
 import { UserProfile } from '../modules/User/Profile/User';
 import { authChecker } from '../auth/authChecker';
 import { SocialAuthResolver } from '../modules/User/Login/social-auth';
+import { ResetPasswordResolver } from '../modules/User/Profile/resetPassword';
 
 @Resolver()
 class WelcomeResolver {
@@ -22,6 +23,7 @@ export const createSchema = (): Promise<GraphQLSchema> =>
       RegisterResolver,
       LoginResolver,
       UserProfile,
-      SocialAuthResolver
+      SocialAuthResolver,
+      ResetPasswordResolver
     ]
   });

@@ -1,4 +1,4 @@
-import { Resolver, Query, Authorized, Ctx } from 'type-graphql';
+import { Resolver, Query, Authorized, Ctx, Mutation } from 'type-graphql';
 import { User } from '../../../models/User';
 import { Context } from '../../../types/Context';
 
@@ -20,5 +20,15 @@ export class UserProfile {
     const users = await User.find();
 
     return users;
+  }
+
+  @Authorized()
+  @Mutation(() => User)
+  async updateProfile(@Ctx() ctx: Context): Promise<User> {
+    const user = await User.findOne({
+      where: [{ id: ctx.req.session.userId }]
+    });
+
+    return user;
   }
 }

@@ -4,7 +4,7 @@ import { Context } from '../types/Context';
 export const authChecker: AuthChecker<Context> = (
   {
     context: {
-      req: { session, user }
+      req: { session }
     }
   },
   roles
@@ -19,7 +19,7 @@ export const authChecker: AuthChecker<Context> = (
     return false;
   }
 
-  if (user.role.some((role) => roles.includes(role))) {
+  if (session.user.role.some((role: any) => roles.includes(role))) {
     // grant access if the roles overlap
     return true;
   }

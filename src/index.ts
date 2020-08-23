@@ -30,7 +30,7 @@ async function bootstrap() {
           where: [{ id: req.session.userId }]
         });
 
-        req.user = user;
+        req.session.user = user;
       }
       return { req, res };
     }
