@@ -12,14 +12,8 @@ import { ObjectType, Field, ID } from 'type-graphql';
 export enum RoleEnum {
   ADMIN = 'admin',
   USER = 'user',
-  OWNER = 'owner'
-}
-
-// eslint-disable-next-line no-shadow
-enum Gender {
-  Male,
-  Female,
-  Other
+  OWNER = 'owner',
+  Guest = 'guest'
 }
 
 @ObjectType()
@@ -52,10 +46,6 @@ export class User extends BaseEntity {
   @Column({ nullable: true })
   verificationCode: number;
 
-  @Field(() => String)
-  @Column('text', { nullable: true })
-  gender: Gender;
-
   @Field()
   @Column({ default: false })
   active: boolean;
@@ -65,7 +55,7 @@ export class User extends BaseEntity {
     type: 'enum',
     enum: RoleEnum,
     array: true,
-    default: [RoleEnum.USER]
+    default: [RoleEnum.Guest]
   })
   role: RoleEnum[];
 
@@ -77,9 +67,11 @@ export class User extends BaseEntity {
   @Column({ default: false })
   isDeleted: boolean;
 
+  @Field()
   @CreateDateColumn()
   createdAt: Date;
 
+  @Field()
   @UpdateDateColumn()
   updatedAt: Date;
 }

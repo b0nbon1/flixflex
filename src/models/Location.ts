@@ -6,24 +6,33 @@ import {
   UpdateDateColumn,
   BaseEntity
 } from 'typeorm';
+import { ObjectType, Field, ID } from 'type-graphql';
 
+interface GeoJson {
+  lat: number;
+  long: number;
+}
+
+@ObjectType()
 @Entity()
 export class Location extends BaseEntity {
+  @Field(() => ID)
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @Field()
   @Column()
   name: string;
 
-  @Column()
-  longitude: string;
+  @Field(() => Object)
+  @Column('simple-json')
+  geolocation: GeoJson;
 
-  @Column('text')
-  latitude: string;
-
+  @Field()
   @CreateDateColumn()
   createdAt: Date;
 
+  @Field()
   @UpdateDateColumn()
   updatedAt: Date;
 }

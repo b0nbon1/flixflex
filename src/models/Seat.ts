@@ -1,3 +1,4 @@
+import { Field } from 'type-graphql';
 import {
   Entity,
   Column,
@@ -7,28 +8,35 @@ import {
   BaseEntity,
   ManyToOne
 } from 'typeorm';
-import { CinemaRoom } from './CinemaRoom';
+import { Cinema } from './Cinema';
 
 @Entity()
 export class Seat extends BaseEntity {
+  @Field()
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @Field()
   @Column()
   name: string;
 
+  @Field()
   @Column()
   class: string;
 
+  @Field()
   @Column()
   isBooked: boolean;
 
-  @ManyToOne(() => CinemaRoom, (cinemaRoom) => cinemaRoom.id)
-  roomId: CinemaRoom;
+  @Field()
+  @ManyToOne(() => Cinema, (cinema) => cinema.id)
+  cinemaId: Cinema;
 
+  @Field()
   @CreateDateColumn()
   createdAt: Date;
 
+  @Field()
   @UpdateDateColumn()
   updatedAt: Date;
 }

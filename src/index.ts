@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import fs from 'fs';
 import { createConnection } from 'typeorm';
 import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
@@ -7,12 +8,19 @@ import session from 'express-session';
 import connectRedis from 'connect-redis';
 import cors from 'cors';
 import passport from 'passport';
+import { graphqlUploadExpress } from 'graphql-upload';
 import dbOptions from './config/ormconfig';
 import logger from './lib/winston';
 import { createSchema } from './graphql/schema';
 import config from './config';
 import { redis } from './redis';
 import { User } from './models/User';
+
+const dir = './files';
+
+if (!fs.existsSync(dir)) {
+  fs.mkdirSync(dir);
+}
 
 async function bootstrap() {
   await createConnection(dbOptions)
@@ -24,6 +32,7 @@ async function bootstrap() {
 
   const apolloServer = new ApolloServer({
     schema,
+    uploads: false,
     context: async ({ req, res }: any) => {
       if (req.session.userId) {
         const user = await User.findOne({
@@ -41,6 +50,8 @@ async function bootstrap() {
   app.use(cors());
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));
+
+  app.use('/static', express.static('files'));
 
   const RedisStore = connectRedis(session);
 
@@ -65,6 +76,8 @@ async function bootstrap() {
   app.get('/', (req, res) =>
     res.status(200).json({ message: 'Welcome to Cinema' })
   );
+
+  app.use(graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 15 }));
 
   apolloServer.applyMiddleware({ app });
 

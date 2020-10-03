@@ -61,6 +61,7 @@
     "no-param-reassign": 0,
     "comma-dangle": 0,
     "@typescript-eslint/no-explicit-any": 0,
+    "no-useless-constructor": "off",
     "default-case": "off",
     "curly": ["error", "multi-line"],
     "import/no-unresolved": [2, { "commonjs": true }],

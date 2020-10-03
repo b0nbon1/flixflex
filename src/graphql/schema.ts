@@ -6,6 +6,7 @@ import { UserProfile } from '../modules/User/Profile/User';
 import { authChecker } from '../auth/authChecker';
 import { SocialAuthResolver } from '../modules/User/Login/social-auth';
 import { ResetPasswordResolver } from '../modules/User/Profile/resetPassword';
+import { FileResolver } from '../modules/shared/upload';
 
 @Resolver()
 class WelcomeResolver {
@@ -24,6 +25,7 @@ export const createSchema = (): Promise<GraphQLSchema> =>
       LoginResolver,
       UserProfile,
       SocialAuthResolver,
-      ResetPasswordResolver
+      ResetPasswordResolver,
+      FileResolver
     ]
   });

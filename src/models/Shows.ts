@@ -5,34 +5,38 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   BaseEntity,
+  JoinColumn,
   ManyToOne
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
 
-import { User } from './User';
+import { Cinema } from './Cinema';
+import { Movie } from './Movie';
 
 @ObjectType()
 @Entity()
-export class Payment extends BaseEntity {
+export class Show extends BaseEntity {
   @Field(() => ID)
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Field()
-  @Column()
-  amount: string;
+  @ManyToOne(() => Cinema)
+  @JoinColumn()
+  cinema: Cinema;
 
   @Field()
-  @Column()
-  paymentType: string;
+  @Column('date')
+  datetime: Date;
 
   @Field()
-  @ManyToOne(() => User, (user) => user.id)
-  userId: User;
+  @ManyToOne(() => Movie)
+  @JoinColumn()
+  movie: Movie;
 
-  @Field()
-  @Column()
-  deductAmount: string;
+  @Field({ nullable: true })
+  @Column('boolean', { default: false })
+  isDeleted?: boolean;
 
   @Field()
   @CreateDateColumn()

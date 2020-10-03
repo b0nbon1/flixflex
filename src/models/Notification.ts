@@ -7,6 +7,8 @@ import {
   BaseEntity,
   ManyToOne
 } from 'typeorm';
+import { ObjectType, Field, ID } from 'type-graphql';
+
 import { User } from './User';
 
 @Entity()
@@ -19,9 +21,6 @@ export class Notification extends BaseEntity {
 
   @Column()
   message: string;
-
-  @ManyToOne(() => User, (user) => user.id)
-  userId: User;
 
   @CreateDateColumn()
   createdAt: Date;

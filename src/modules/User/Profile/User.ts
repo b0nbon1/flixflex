@@ -37,6 +37,4 @@ export class UserProfile {
 
     return user;
   }
-
-  // TODO: support profile picture
 }
