@@ -11,8 +11,10 @@ import { ObjectType, Field, ID } from 'type-graphql';
 
 import { User } from './User';
 
+@ObjectType()
 @Entity()
 export class CinemaRating extends BaseEntity {
+  @Field(() => ID)
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

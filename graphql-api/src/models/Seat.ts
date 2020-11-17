@@ -26,11 +26,31 @@ export class Seat extends BaseEntity {
 
   @Field()
   @Column()
+  column: number;
+
+  @Field()
+  @Column()
+  row: number;
+
+  @Field()
+  @Column()
+  side: string;
+
+  @Field()
+  @Column()
+  flag: boolean;
+
+  @Field()
+  @Column()
   isBooked: boolean;
 
   @Field()
+  @Column()
+  isDeleted: boolean;
+
+  @Field()
   @ManyToOne(() => Cinema, (cinema) => cinema.id)
-  cinemaId: Cinema;
+  cinema: Cinema;
 
   @Field()
   @CreateDateColumn()
