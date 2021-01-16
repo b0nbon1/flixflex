@@ -11,6 +11,7 @@ if (process.env.NODE_ENV !== 'production') {
 
   try {
     // The environment file might not exist
+    // tslint:disable-next-line: no-var-requires
     localConfig = require(`./env/${config.env}.config`).default;
     localConfig = localConfig || {};
   } catch (err) {

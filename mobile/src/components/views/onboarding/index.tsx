@@ -34,7 +34,7 @@ export const OnBoardingView: React.FC<OnBoardingViewProps> = ({
         overScrollMode="never"
         transitionStyle="curl"
         initialPage={0}
-        scrollEnabled={false}
+        scrollEnabled
         ref={pagerRef}
       >
         <View key="1">

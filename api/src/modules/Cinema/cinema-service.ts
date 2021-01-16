@@ -1,8 +1,11 @@
 import { Repository } from 'typeorm';
 import { InjectRepository } from 'typeorm-typedi-extensions';
+import { Service } from 'typedi';
+
 import { Cinema } from '../../models/Cinema';
 import { CinemaInput } from './cinema-input';
 
+@Service()
 export class CinemaService {
   constructor(
     @InjectRepository(Cinema)
@@ -24,7 +27,7 @@ export class CinemaService {
 
   async update(id: string, data: CinemaInput): Promise<Cinema> {
     await this.cinemaRepository.update(id, data);
-    return this.cinemaRepository.findOne(id);
+    return this.cinemaRepository.findOne(id, { where: { isDeleted: false } });
   }
 
   async delete(id: string): Promise<Cinema> {

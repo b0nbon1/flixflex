@@ -8,8 +8,12 @@ import {
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
 
-interface GeoJson {
+@ObjectType()
+export class GeoJson {
+  @Field()
   lat: number;
+
+  @Field()
   long: number;
 }
 
@@ -24,7 +28,7 @@ export class Location extends BaseEntity {
   @Column()
   name: string;
 
-  @Field(() => Object)
+  @Field(() => GeoJson)
   @Column('simple-json')
   geolocation: GeoJson;
 

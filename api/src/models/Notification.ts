@@ -4,12 +4,8 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  BaseEntity,
-  ManyToOne
-} from 'typeorm';
-import { ObjectType, Field, ID } from 'type-graphql';
+  BaseEntity } from 'typeorm';
 
-import { User } from './User';
 
 @Entity()
 export class Notification extends BaseEntity {

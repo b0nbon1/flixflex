@@ -8,4 +8,4 @@ const config = {
   factories: ['src/database/factories/**/*.factory.ts']
 };
 
-export = config;
+export default config;

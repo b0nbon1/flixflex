@@ -1,6 +1,7 @@
 import 'reflect-metadata';
 import fs from 'fs';
-import { createConnection } from 'typeorm';
+import { createConnection, useContainer } from 'typeorm';
+import {Container} from "typedi";
 import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
 import bodyParser from 'body-parser';
@@ -23,6 +24,7 @@ if (!fs.existsSync(dir)) {
 }
 
 async function bootstrap() {
+  useContainer(Container);
   await createConnection(dbOptions)
     .then(async () => {
       logger.info('Connected to DB');
@@ -53,6 +55,7 @@ async function bootstrap() {
 
   app.use('/static', express.static('files'));
 
+  // FIXME: This needs to be fixed on types.
   const RedisStore = connectRedis(session);
 
   app.use(

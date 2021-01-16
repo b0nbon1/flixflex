@@ -9,54 +9,69 @@ import {
   JoinColumn
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
-import { Location } from './Location';
 import { User } from './User';
+
+@ObjectType()
+export class GeoJson {
+  @Field()
+  lat: number;
+
+  @Field()
+  long: number;
+}
 
 @ObjectType()
 @Entity()
 export class Cinema extends BaseEntity {
-  @Field(() => ID)
+  @Field(() => ID, { nullable: true })
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Field()
+  @Field({ nullable: true })
   @Column()
   name: string;
 
-  @Field()
+  @Field({ nullable: true })
   @Column()
   capacity: number;
 
-  @Field()
-  @Column()
+  @Field({ nullable: true })
+  @Column({ default: false })
   isVerified: boolean;
 
-  @Field()
-  @Column()
+  @Field({ nullable: true })
+  @Column({ default: false })
   isDeleted: boolean;
 
-  @Field()
+  @Field({ nullable: true })
   @Column({ default: 5 })
   averageRating: number;
 
-  @Field()
+  @Field({ nullable: true })
   @Column()
   status: string;
 
-  @Field()
-  @OneToOne(() => Location)
-  @JoinColumn()
-  location: Location;
+  @Field(() => GeoJson, { nullable: true })
+  @Column('simple-json')
+  geolocation: GeoJson;
 
-  @Field()
+  @Field(() => [String], { nullable: true })
+  @Column({
+    type: 'simple-array',
+    array: true,
+    nullable: true,
+  })
+  imageUrls: string[];
+
+  @Field({ nullable: true })
   @OneToOne(() => User)
   @JoinColumn()
   user: User;
 
-  @Field()
+  @Field({ nullable: true })
   @CreateDateColumn()
   createdAt: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ nullable: true })
   updatedAt: Date;
 }

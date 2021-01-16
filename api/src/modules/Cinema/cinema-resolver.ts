@@ -1,25 +1,26 @@
 import { Resolver, Query, Arg, Mutation } from 'type-graphql';
+
 import { Cinema } from '../../models/Cinema';
 import { CinemaService } from './cinema-service';
 // import { Context } from '../../types/Context';
 import { CinemaInput } from './cinema-input';
 
 @Resolver()
-export class GenreResolver {
+export class CinemaResolver {
   constructor(private readonly cinemaService: CinemaService) {}
 
-  @Query(() => Cinema)
-  async getAll(): Promise<Cinema[]> {
+  @Query(() => [Cinema])
+  async getAllCinemas(): Promise<Cinema[]> {
     return this.cinemaService.findAll();
   }
 
   @Query(() => Cinema)
-  async getOne(@Arg('movieId') id: string): Promise<Cinema> {
+  async getOneCinema(@Arg('cinemaId') id: string): Promise<Cinema> {
     return this.cinemaService.findOne(id);
   }
 
   @Mutation(() => Cinema)
-  async create(
+  async createCinema(
     @Arg('data') data: CinemaInput
     // @Ctx() ctx: Context
   ): Promise<Cinema> {
@@ -27,17 +28,17 @@ export class GenreResolver {
   }
 
   @Mutation(() => Cinema)
-  async update(
+  async updateCinema(
     @Arg('data') data: CinemaInput,
-    @Arg('movieId') id: string
+    @Arg('cinemaId') id: string
     // @Ctx() ctx: Context
   ): Promise<Cinema> {
     return this.cinemaService.update(id, data);
   }
 
   @Mutation(() => Cinema)
-  async remove(
-    @Arg('movieId') id: string
+  async removeCinema(
+    @Arg('cinemaId') id: string
     // @Ctx() ctx: Context
   ): Promise<Cinema> {
     return this.cinemaService.delete(id);

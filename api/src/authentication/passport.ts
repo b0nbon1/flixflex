@@ -4,10 +4,10 @@ import { Strategy as GoogleTokenStrategy } from 'passport-token-google2';
 
 // FACEBOOK STRATEGY
 const FacebookTokenStrategyCallback = (
-  accessToken,
-  refreshToken,
-  profile,
-  done
+  accessToken: any,
+  refreshToken: any,
+  profile: any,
+  done: (arg0: any, arg1: { accessToken: any; refreshToken: any; profile: any; }) => any
 ) =>
   done(null, {
     accessToken,
@@ -27,10 +27,10 @@ passport.use(
 
 // GOOGLE STRATEGY
 const GoogleTokenStrategyCallback = (
-  accessToken,
-  refreshToken,
-  profile,
-  done
+  accessToken: any,
+  refreshToken: any,
+  profile: any,
+  done: (arg0: any, arg1: { accessToken: any; refreshToken: any; profile: any; }) => any
 ) =>
   done(null, {
     accessToken,
@@ -48,8 +48,7 @@ passport.use(
   )
 );
 
-// promisified authenticate functions
-const authenticateFacebook = (req, res) =>
+const authenticateFacebook = (req: any, res: any) =>
   new Promise((resolve, reject) => {
     passport.authenticate(
       'facebook-token',
@@ -61,7 +60,7 @@ const authenticateFacebook = (req, res) =>
     )(req, res);
   });
 
-const authenticateGoogle = (req, res) =>
+const authenticateGoogle = (req: any, res: any) =>
   new Promise((resolve, reject) => {
     passport.authenticate(
       'google-token',
