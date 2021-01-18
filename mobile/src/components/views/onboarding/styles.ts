@@ -11,6 +11,7 @@ export const IconImage = styled(Image)``;
 
 export const View = styled.View<ITheme>`
   flex: 1;
+  margin-horizontal: ${wp(20)}px;
 `;
 
 export const PageContent = styled.View<ITheme>`
@@ -22,7 +23,6 @@ export const PageContent = styled.View<ITheme>`
 export const Pager = styled(ViewPager)<ITheme>`
   flex: 1;
   background-color: #000;
-  margin-horizontal: ${wp(20)}px;
 `;
 
 export const PageTitle = styled(Text)<ITheme>`
@@ -84,8 +84,8 @@ export const StartButton = styled(Button)<ITheme>`
   background-color: ${({ theme }) => theme.backgroundRed};
   width: ${wp(247)}px;
   height: ${hp(54)}px;
-  padding-horizontal: ${wp(14)}px;
-  padding-vertical: ${hp(14)}px;
+  padding-horizontal: ${wp(10)}px;
+  padding-vertical: ${hp(10)}px;
   align-items: center;
   align-content: center;
   justify-content: center;

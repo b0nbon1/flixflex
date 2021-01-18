@@ -19,11 +19,11 @@ interface PageProps {
   Icon?: React.FC;
   skip?: boolean;
   description?: string;
-  start?: boolean;
   picture?: ImageRequireSource;
   id: number;
   handlePageChange: (page: number) => void;
   handleSkip: () => void;
+  handleStart?: () => void;
 }
 
 export const Page: React.FC<PageProps> = ({
@@ -31,11 +31,11 @@ export const Page: React.FC<PageProps> = ({
   skip,
   description,
   id,
-  start,
   Icon,
   picture,
   handlePageChange,
   handleSkip,
+  handleStart,
 }) => {
   return (
     <View>
@@ -45,8 +45,8 @@ export const Page: React.FC<PageProps> = ({
         <PageTitle>{title}</PageTitle>
         <PageDescription>{description}</PageDescription>
         {Icon && <Icon />}
-        {start && (
-          <StartButton>
+        {handleStart && (
+          <StartButton onPress={() => handleStart()}>
             <StartedText>Get Started</StartedText>
             <IconImage source={chevronRightIcon} />
           </StartButton>

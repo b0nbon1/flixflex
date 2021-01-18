@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { View } from 'react-native';
 import * as Font from 'expo-font';
 import { Asset } from 'expo-asset';
 
@@ -9,6 +10,7 @@ import store from './store';
 import { themeDark } from './theme';
 
 import Navigator from './navigation';
+import theme from './store/theme/reducer';
 
 const App: React.FC = () => {
   const [loading, setLoading] = useState(true);
@@ -18,6 +20,7 @@ const App: React.FC = () => {
       'Poppins-Regular': require('../assets/Poppins-Regular.ttf'),
       'Poppins-Bold': require('../assets/Poppins-Bold.ttf'),
       entypo: require('../node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/Entypo.ttf'),
+      ionicons: require('../node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/Ionicons.ttf'),
     });
     const images = [require('../assets/icon.png')];
     await images.map(image => Asset.fromModule(image).downloadAsync());
@@ -30,7 +33,9 @@ const App: React.FC = () => {
   return (
     <Provider store={store}>
       <ThemeProvider theme={themeDark}>
-        {!loading && <Navigator />}
+        <View style={{ backgroundColor: '#000', flex: 1 }}>
+          {!loading && <Navigator />}
+        </View>
       </ThemeProvider>
     </Provider>
   );

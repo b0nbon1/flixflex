@@ -1,7 +1,10 @@
 import React, { useRef } from 'react';
+
 import { OnBoardingView } from '../../components/views/onboarding';
 
-interface OnBoardingProps {}
+interface OnBoardingProps {
+  navigation: any;
+}
 
 const data = [
   {
@@ -34,7 +37,7 @@ const data = [
   },
 ];
 
-export const OnBoarding: React.FC<OnBoardingProps> = () => {
+export const OnBoarding: React.FC<OnBoardingProps> = ({ navigation }) => {
   const pagerRef = useRef<any>(null);
   const handlePageChange = (pageNumber: number) => {
     pagerRef.current.setPage(pageNumber);
@@ -42,12 +45,16 @@ export const OnBoarding: React.FC<OnBoardingProps> = () => {
   const handleSkip = () => {
     pagerRef.current.setPage(3);
   };
+  const handleStart = () => {
+    navigation.navigate('Explore');
+  };
   return (
     <OnBoardingView
       handleSkip={handleSkip}
       data={data}
       pagerRef={pagerRef}
       handlePageChange={handlePageChange}
+      handleStart={handleStart}
     />
   );
 };

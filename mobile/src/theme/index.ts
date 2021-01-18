@@ -5,6 +5,7 @@ import flexBox from './flexbox';
 const theme = {
   backgroundRed: colors.red,
   textGreen: colors.green,
+  textRed: colors.red,
   fontFamily,
   fontSize,
   ...flexBox,

@@ -1,6 +1,7 @@
 import React from 'react';
+import { View } from 'react-native';
 
-import { View, Pager } from './styles';
+import { Pager } from './styles';
 import { Page } from './page';
 import { Background } from '../../widgets/background';
 import { EasyTicket, FastTicket } from './icon-component';
@@ -19,6 +20,7 @@ interface OnBoardingViewProps {
   pagerRef: React.RefObject<any>;
   handlePageChange: (page: number) => void;
   handleSkip: () => void;
+  handleStart: () => void;
 }
 
 export const OnBoardingView: React.FC<OnBoardingViewProps> = ({
@@ -26,13 +28,14 @@ export const OnBoardingView: React.FC<OnBoardingViewProps> = ({
   pagerRef,
   handlePageChange,
   handleSkip,
+  handleStart,
 }) => {
   return (
     <Background>
       <Pager
         orientation="horizontal"
-        overScrollMode="never"
-        transitionStyle="curl"
+        overScrollMode="auto"
+        transitionStyle="scroll"
         initialPage={0}
         scrollEnabled
         ref={pagerRef}
@@ -79,7 +82,7 @@ export const OnBoardingView: React.FC<OnBoardingViewProps> = ({
             skip={data[3].skip}
             title={data[3].title}
             description={data[3].description}
-            start
+            handleStart={handleStart}
             handlePageChange={handlePageChange}
             handleSkip={handleSkip}
           />
