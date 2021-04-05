@@ -1,0 +1,67 @@
+name: Development CI
+
+on:
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop, setup-CI-CD-envs ]
+
+jobs:
+  test-mobile:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: |
+          cd mobile
+          npm ci
+          npm run compile
+    # - run: npm test
+
+  test-backend:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+    
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: |
+          cd backend
+          npm ci
+          npm run lint
+          npm run build
+          npm run test
+          npm run coverage
+    
+    - name: Codecov
+      uses: codecov/codecov-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: ./backend/coverage/lcov.info
+
+  deploy-dev:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Release API
+      uses: akhileshns/heroku-deploy@v3.0.4
+      with:
+        heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+        heroku_app_name: "api-flixflex-v1"
+        heroku_email: ${{ secrets.HEROKU_API_KEY }}
+      env:
+        HD_APP_BASE: "backend"

@@ -9,8 +9,6 @@ import { handleSuccess, handleError } from './utils/response';
 import ErrorHandler from './utils/error';
 import config from './config';
 
-const isDevelopment = config.env;
-
 const app = express();
 
 app.use(morganLogger('common', {
@@ -33,24 +31,12 @@ app.get('/', (req, res) => handleSuccess(200, 'Welcome to FlixFlex', res));
 app.use(router);
 app.use((req, res) => handleError(404, 'Route not found', res));
 
-// development error handler middleware
-app.use((err, req, res, next) => {
-  if (isDevelopment !== 'development') {
-    next(err);
-  }
+// eslint-disable-next-line no-unused-vars
+app.use((err, req, res, _next) => {
   logger.error(`${err.statusCode || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${
     req.ip
   } - Stack: ${err.stack}`);
   return handleError(err.statusCode || 500, `${err.message}.`, res);
-});
-
-// Production and testing error handler middleware
-// eslint-disable-next-line no-unused-vars
-app.use((err, req, res, next) => {
-  logger.error(`${err.statusCode || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${
-    req.ip
-  } - Stack: ${err.stack}`);
-  return handleError(err.statusCode || 500, err.message, res);
 });
 
 process.on('unhandledRejection', (reason) => {

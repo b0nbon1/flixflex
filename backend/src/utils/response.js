@@ -22,11 +22,11 @@ export const handleSuccess = (statusCode, message, res, data = null) => res.stat
 /**
  * handleError Function
  * @param {int} statusCode - Status code
- * @param {string} message - Message
+ * @param {string} errorMessage - Message
  * @param {object} res - Response
  * @returns {object} - Returned Formatted Error response object
  */
-export const handleError = (statusCode, message, res) => res.status(statusCode).json({
+export const handleError = (statusCode, errorMessage, res) => res.status(statusCode).json({
   status: 'error',
-  message,
+  errorMessage,
 });
