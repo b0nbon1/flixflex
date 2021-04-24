@@ -31,14 +31,14 @@ const options = {
       bearerAuth: []
     }],
     servers: [
-      {
-        url: 'https://bonvich.me',
-        description: 'Production Server'
-      },
-      {
-        url: 'https://bonvich.me',
-        description: 'Staging Server'
-      },
+      // {
+      //   url: 'https://bonvich.me',
+      //   description: 'Production Server'
+      // },
+      // {
+      //   url: 'https://bonvich.me',
+      //   description: 'Staging Server'
+      // },
       {
         url: `http://localhost:${config.PORT}/api/v1`,
         description: 'Local Host'
@@ -47,7 +47,7 @@ const options = {
   },
   apis: [
     resolve(__dirname, './resources/*.yaml'),
-    resolve(__dirname, '../routes/api/*.js')
+    resolve(__dirname, '../routes/*.js')
   ]
 };
 

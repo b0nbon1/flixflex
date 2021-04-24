@@ -4,7 +4,7 @@ import { spawn } from 'child-process-promise';
 import config from '../../config';
 import logger from '../../utils/winston';
 
-const spawnOptions = { cwd: path.join(__dirname, '../..'), stdio: 'inherit' };
+const spawnOptions = { cwd: path.join(__dirname, '../../..'), stdio: 'inherit' };
 
 (async () => {
   // Strip our search params
