@@ -27,17 +27,17 @@ module.exports = {
         defaultValue: 'released',
         values: ['released', 'coming_soon'],
       },
-      imageUrl: {
+      imageUrls: {
         type: Sequelize.ARRAY(Sequelize.STRING),
       },
       trailerUrl: {
         type: Sequelize.STRING,
       },
       cast: {
-        type: Sequelize.ARRAY(Sequelize.STRING),
+        type: Sequelize.STRING,
       },
       creators: {
-        type: Sequelize.ARRAY(Sequelize.STRING),
+        type: Sequelize.STRING,
       },
       summary: {
         type: Sequelize.TEXT,

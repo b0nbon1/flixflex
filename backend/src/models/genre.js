@@ -7,7 +7,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Genre extends Model {
     static associate(models) {
-      Genre.hasMany(models.booking, {
+      Genre.hasMany(models.genreMovie, {
         foreignKey: 'genreId',
         onDelete: 'CASCADE'
       });
@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
     isDeleted: DataTypes.BOOLEAN
   }, {
     sequelize,
-    modelName: 'Genre',
+    modelName: 'genre',
   });
   return Genre;
 };

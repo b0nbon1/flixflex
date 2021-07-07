@@ -7,7 +7,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Movie extends Model {
     static associate(models) {
-      Movie.hasMany(models.booking, {
+      Movie.hasMany(models.genreMovie, {
         foreignKey: 'movieId',
         onDelete: 'CASCADE'
       });
@@ -60,7 +60,7 @@ module.exports = (sequelize, DataTypes) => {
     rated: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'Movie',
+    modelName: 'movie',
   });
   return Movie;
 };

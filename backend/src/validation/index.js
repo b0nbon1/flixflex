@@ -18,6 +18,7 @@ export const validation = (req, res, next) => {
   const methodsSupported = ['post', 'put', 'patch'];
   const { path } = req.route;
   const method = req.method.toLowerCase();
+  // eslint-disable-next-line no-console
   console.log(`${method}-${path}`);
   if (methodsSupported.includes(method) && Schemas[`${method}-${path}`] !== undefined) {
     const schema = Schemas[`${method}-${path}`];
@@ -33,7 +34,7 @@ export const validation = (req, res, next) => {
     }
 
     req.body = value;
-    console.log(req.body);
+    // console.log(req.body);
     return next();
   }
 

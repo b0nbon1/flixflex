@@ -1,5 +1,6 @@
 import express from 'express';
 import { validation } from '../validation';
+import { catchErrors } from '../utils/error';
 import files from '../services/files';
 import Movie from '../controllers/movies';
 
@@ -92,7 +93,7 @@ router.post(
     'Only .png, .jpg and .jpeg formats allowed!'
   ),
   validation,
-  create
+  catchErrors(create)
 );
 
 export default router;

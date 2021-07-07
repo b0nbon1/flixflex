@@ -1,4 +1,4 @@
-// import { createMovie } from '../services/movies';
+import { createMovie } from '../services/movies';
 
 const Movie = {
   /**
@@ -8,13 +8,19 @@ const Movie = {
    * @param {function} next
    * @returns {void}
    */
-  create: (req, res) => {
-    // const { genreIds, ...MovieFields } = req.body;
-    // const movie = createMovie(MovieFields);
-    console.log(req.body);
-    console.log(req.files);
+  create: async (req, res) => {
+    const { genreIds, ...MovieFields } = req.body;
+    const images = req.files || [];
+    const imageUrls = images.map((image) => `${req.protocol}://${req.get('host')}/posters/${image.filename}`);
+    MovieFields.imageUrls = imageUrls;
+    console.log(MovieFields);
+    const movie = await createMovie(MovieFields);
+    console.log(movie.toJSON());
     return res.json({ message: 'Successfully uploaded files' });
   },
+  createGenre: async (req, res) => {
+    
+  }
 };
 
 export default Movie;

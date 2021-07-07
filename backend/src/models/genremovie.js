@@ -6,12 +6,12 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class GenreMovie extends Model {
     static associate(models) {
-      GenreMovie.belongsTo(models.Movie, {
+      GenreMovie.belongsTo(models.movie, {
         allowNull: false,
         foreignKey: 'movieId',
         onDelete: 'CASCADE'
       });
-      GenreMovie.belongsTo(models.Genre, {
+      GenreMovie.belongsTo(models.genre, {
         allowNull: false,
         foreignKey: 'genreId',
         onDelete: 'CASCADE'
@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {
     sequelize,
-    modelName: 'GenreMovie',
+    modelName: 'genreMovie',
   });
   return GenreMovie;
 };

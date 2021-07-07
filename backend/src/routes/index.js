@@ -1,6 +1,8 @@
 import swaggerJsdoc from 'swagger-jsdoc';
 import express from 'express';
 import { serve, setup } from 'swagger-ui-express';
+import { join } from 'path';
+
 import swaggerDefinition from '../docs/api-specification';
 import movie from './movies';
 
@@ -17,5 +19,6 @@ const specsConfig = setup(specs, {
 router.use(apiDocs, serve);
 router.use(apiDocs, specsConfig);
 router.use(prefix, movie);
+router.use('/posters', express.static(join(__dirname, '../../public/movies_posters')));
 
 export default router;
