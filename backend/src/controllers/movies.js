@@ -1,4 +1,6 @@
-import { createMovie } from '../services/movies';
+import { createMovie, getMovies } from '../services/movies';
+import { handleSuccess } from '../utils/response';
+import { createGenre, getGenre, addGenreMovies } from '../services/genres';
 
 const Movie = {
   /**
@@ -11,16 +13,52 @@ const Movie = {
   create: async (req, res) => {
     const { genreIds, ...MovieFields } = req.body;
     const images = req.files || [];
-    const imageUrls = images.map((image) => `${req.protocol}://${req.get('host')}/posters/${image.filename}`);
+    const imageUrls = images.map(
+      (image) => `${req.protocol}://${req.get('host')}/posters/${image.filename}`
+    );
     MovieFields.imageUrls = imageUrls;
-    console.log(MovieFields);
     const movie = await createMovie(MovieFields);
-    console.log(movie.toJSON());
-    return res.json({ message: 'Successfully uploaded files' });
+    const genres = await addGenreMovies((genreIds?.split(',') || []), movie.id);
+    movie.genres = genres;
+    return handleSuccess(201, 'Successfully created movie', res, movie);
   },
+
+  /**
+   * Get method to fetch genre
+   * @param {object} req
+   * @param {object} res
+   * @param {function} next
+   * @returns {void}
+   */
+  findAll: async (req, res) => {
+    const movies = await getMovies();
+    return handleSuccess(200, 'Successfully fetched movies', res, movies);
+  },
+
+  /**
+   * POST method to create a Genre
+   * @param {object} req
+   * @param {object} res
+   * @param {function} next
+   * @returns {void}
+   */
   createGenre: async (req, res) => {
-    
-  }
+    const { name, description } = req.body;
+    const genre = await createGenre({ name, description });
+    return handleSuccess(201, 'Successfully created genre', res, genre);
+  },
+
+  /**
+   * Get method to fetch genre
+   * @param {object} req
+   * @param {object} res
+   * @param {function} next
+   * @returns {void}
+   */
+  findAllGenres: async (req, res) => {
+    const genres = await getGenre();
+    return handleSuccess(200, 'Successfully fetched genres', res, genres);
+  },
 };
 
 export default Movie;

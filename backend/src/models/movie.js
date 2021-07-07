@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Movie.hasMany(models.genreMovie, {
         foreignKey: 'movieId',
-        onDelete: 'CASCADE'
+        as: 'genres'
       });
     }
   }
@@ -49,11 +49,11 @@ module.exports = (sequelize, DataTypes) => {
     trailerUrl: DataTypes.STRING,
     cast: {
       allowNull: true,
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
     creators: {
       allowNull: true,
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
     summary: DataTypes.TEXT,
     isDeleted: DataTypes.BOOLEAN,

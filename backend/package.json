@@ -24,6 +24,7 @@
   "devDependencies": {
     "@babel/cli": "^7.13.14",
     "@babel/core": "^7.13.14",
+    "@babel/eslint-parser": "^7.14.7",
     "@babel/node": "^7.13.13",
     "@babel/polyfill": "^7.12.1",
     "@babel/preset-env": "^7.13.12",
@@ -54,8 +55,6 @@
     "pg": "^8.5.1",
     "sequelize": "^6.6.2",
     "socket.io": "^4.0.1",
-    "swagger-jsdoc": "^6.1.0",
-    "swagger-ui-express": "^4.1.6",
     "uuid": "^8.3.2",
     "winston": "^3.3.3"
   }

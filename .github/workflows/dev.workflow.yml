@@ -7,12 +7,14 @@ on:
     branches: [ develop ]
 
 jobs:
+  test-web:
+    runs-on: ubuntu-latest
   test-mobile:
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [12.x]
+        node-version: [14.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -22,8 +24,8 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: |
           cd mobile
-          npm ci
-          npm run compile
+          yarn install --frozen-lockfile
+          yarn compile
     # - run: npm test
 
   test-backend:
@@ -31,17 +33,44 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x]
-    
+        node-version: [14.x]
+    services:
+      db:
+        image: postgres
+        env:
+          POSTGRES_DB: flixflex
+          POSTGRES_USER: bon
+          POSTGRES_PASSWORD: '1234567890'
+        ports:
+          - 5432:5432
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - run: env
     - run: |
           cd backend
-          npm ci
+          npm ci --prefer-offline
+          cat > .env <<EOF
+          DATABASE_URL=postgres://bon:1234567890@127.0.0.1:5432/flixflex
+          DEV_DATABASE_URL=postgres://bon:1234567890@127.0.0.1:5432/flixflex
+          TEST_DATABASE_URL=postgres://bon:1234567890@127.0.0.1:5432/flixflex_test
+          SECRET=dastygfhknljqwr23#@
+          POSTGRES_USER=bon
+          POSTGRES_PASSWORD=1234567890
+          NODE_ENV=development
+          MAILGUN_KEY=50c10ae3706f2143bf40ba1f655c71cb-e51d0a44-b6e4e407
+          MAILGUN_URL=https://api.mailgun.net/v3/sandbox871acc0cf4ca458f972f1850843b3f40.mailgun.org
+          TWILIO_ACCOUNT_SID=ACfcd5752ceb52eaccc2846b40f4e6c6ff
+          TWILIO_AUTH_TOKEN=f870a13e1c2951ca699b4cd1818a6b56
+          TWILIO_PHONENUMBER=+12134555248
+          FACEBOOK_APP_ID=720380582135511
+          FACEBOOK_APP_SECRET=4bb283213e7ac051614b655a84ee74bc
+          GOOGLE_APP_ID=22752663344-en1v4himmit9s3pk0hcj32j0n871a312.apps.googleusercontent.com
+          GOOGLE_APP_SECRET=z032n_bwnbf3nRYdPgxuFJ3h
+          EOF
           npm run lint
           npm run build
           npm run test

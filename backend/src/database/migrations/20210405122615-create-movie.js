@@ -20,6 +20,7 @@ module.exports = {
       },
       dateOfRelease: {
         type: Sequelize.DATE,
+        allowNull: false,
       },
       status: {
         type: Sequelize.ENUM,
@@ -28,19 +29,24 @@ module.exports = {
         values: ['released', 'coming_soon'],
       },
       imageUrls: {
-        type: Sequelize.ARRAY(Sequelize.STRING),
+        type: Sequelize.ARRAY(Sequelize.TEXT),
+        allowNull: true,
       },
       trailerUrl: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
+        allowNull: true,
       },
       cast: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
+        allowNull: true,
       },
       creators: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
+        allowNull: true,
       },
       summary: {
         type: Sequelize.TEXT,
+        allowNull: true,
       },
       isDeleted: {
         type: Sequelize.BOOLEAN,

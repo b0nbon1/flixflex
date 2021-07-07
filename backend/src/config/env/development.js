@@ -4,7 +4,7 @@ const config = {
     dialect: 'postgres',
   },
   debug: true,
-  PORT: process.env.PORT || 3000
+  PORT: process.env.PORT || 2300
 };
 
 module.exports = config;

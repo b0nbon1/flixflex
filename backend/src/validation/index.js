@@ -1,3 +1,4 @@
+import fs from 'fs';
 import { handleError } from '../utils/response';
 import Schemas from './schemas';
 
@@ -25,11 +26,14 @@ export const validation = (req, res, next) => {
     const { error, value } = schema.validate(req.body, options);
 
     if (error) {
-      const err = error.details.map(e => (e.message));
-      // TODO: check out these lines
-      // if (req.file !== undefined) {
-      //   unlinkSync(req.file.path);
-      // }
+      const err = error.details.map(e => ({ message: e.message, field: e.path[0] }));
+
+      // delete files on error.
+      if (req.files !== undefined) {
+        req.files.forEach(file => {
+          fs.unlinkSync(file.path);
+        });
+      }
       return handleError(422, err, res, 'validation');
     }
 
