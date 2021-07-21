@@ -20,7 +20,7 @@
         "backgroundColor": "#000000"
       }
     },
-    "androidNavigationBar": { "visible": "sticky-immersive" },
+    "androidNavigationBar": { "visible": "leanback" },
     "web": {
       "favicon": "./assets/favicon.png"
     }

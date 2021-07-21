@@ -8,6 +8,7 @@ const data = [
     genre: 'action | thriller',
     time: '108 min',
     year: 2020,
+    videoId: 'ga0iTWXCGa0',
     info:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus feugiat velit. Proin consectetur ipsum in nulla volutpat porttitor. Pellentesque feugiat scelerisque interdum.',
     image: require('../../images/lupin.jpg'),
@@ -18,6 +19,7 @@ const data = [
     genre: 'comedy | Action',
     time: '105 min',
     year: 2021,
+    videoId: 'XW2E2Fnh52w',
     info:
       'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.',
     image: require('../../images/ww84.jpg'),
@@ -27,6 +29,7 @@ const data = [
     title: 'Warrior',
     genre: 'Action | Horror',
     time: '108 min',
+    videoId: '79rtcCnaeyo',
     info:
       'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.',
     year: 2021,
@@ -38,6 +41,7 @@ const data = [
     genre: 'Drama | Horror',
     time: '108 min',
     year: 2021,
+    videoId: '0Dhh7q9Us5c',
     info:
       'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.',
     image: require('../../images/run.jpg'),

@@ -9,6 +9,21 @@ on:
 jobs:
   test-web:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: |
+          cd mobile
+          yarn install --frozen-lockfile
+          yarn build
+          yarn lint
+    # - run: npm test
   test-mobile:
     runs-on: ubuntu-latest
 

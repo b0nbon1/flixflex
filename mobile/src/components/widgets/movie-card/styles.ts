@@ -21,15 +21,16 @@ export const ButtonText = styled(Text)<ITheme>`
 
 export const TitleText = styled(Text)<ITheme>`
   color: #fff;
+  font-family: ${({ theme }) => theme.fontFamily.bold};
+  font-size: ${({ theme }) => theme.fontSize.lg};
   margin-left: ${wp(7)}px;
 `;
 
 export const InfoText = styled(Text)<ITheme>`
   font-family: ${({ theme }) => theme.fontFamily.light};
-  font-size: ${({ theme }) => theme.fontSize.sm};
   color: #fff;
-  text-align: center;
-  margin-vertical: ${hp(10)}px;
+  margin-left: ${wp(7)}px;
+  margin-vertical: ${hp(4)}px;
 `;
 
 export const BottomContainer = styled.View<ITheme>`
