@@ -15,7 +15,7 @@ export function ExploreTabs(): JSX.Element {
       sceneContainerStyle={{ backgroundColor: '#000000' }}
       tabBarOptions={{
         activeTintColor: '#FFF',
-        labelStyle: { fontSize: 13, textTransform: 'none' },
+        labelStyle: { fontSize: 13, textTransform: 'none', fontFamily: 'Poppins-Light'},
         style: { backgroundColor: '#000' },
         indicatorStyle: {
           backgroundColor: '#ff2435',

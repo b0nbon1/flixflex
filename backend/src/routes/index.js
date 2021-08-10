@@ -1,19 +1,13 @@
-import swaggerJsdoc from 'swagger-jsdoc';
 import express from 'express';
-import { serve, setup } from 'swagger-ui-express';
-import swaggerDefinition from '../docs/api-specification';
+import { join } from 'path';
 
-const specs = swaggerJsdoc(swaggerDefinition);
+import movie from './movies';
+
 const router = express.Router();
 // eslint-disable-next-line no-unused-vars
 const prefix = '/api/v1';
-const apiDocs = '/api/docs';
-const specsConfig = setup(specs, {
-  explorer: false,
-  customeSiteTitle: 'Barefoot Nomad API'
-});
 
-router.use(apiDocs, serve);
-router.use(apiDocs, specsConfig);
+router.use(prefix, movie);
+router.use('/posters', express.static(join(__dirname, '../../public/movies_posters')));
 
 export default router;

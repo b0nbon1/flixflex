@@ -1,5 +1,5 @@
 import styled from '@emotion/native';
-import ViewPager from '@react-native-community/viewpager';
+import ViewPager from 'react-native-pager-view';
 
 import { ITheme } from '../../../theme';
 import { Text } from '../../widgets/Text';

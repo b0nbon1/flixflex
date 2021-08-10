@@ -1,7 +1,6 @@
 import React from 'react';
 import { ScrollView } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
-import { Rating } from 'react-native-ratings';
 
 import {
   Container,
@@ -19,6 +18,8 @@ import {
   TheaterInfo,
   TheaterInfoText,
 } from './styles';
+
+import StarRatingView from "../../widgets/star-rating";
 
 interface TheaterProps {
   image: any;
@@ -73,12 +74,7 @@ export const MovieTheater: React.FC<TheaterProps> = ({
           {title}
         </TheaterTitle>
         <TheaterInfo>
-          <Rating
-            startingValue={stars}
-            readonly
-            tintColor="#000"
-            imageSize={30}
-          />
+          <StarRatingView starCount={stars} totalStars={5} height={20}  />
           <Entypo name="chevron-right" size={50} color="#fff" />
         </TheaterInfo>
         <TheaterInfoText numberOfLines={2}>{info}</TheaterInfoText>

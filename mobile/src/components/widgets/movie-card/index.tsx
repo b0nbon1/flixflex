@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Ionicons, Entypo } from '@expo/vector-icons';
+
+import { YoutubePlayer } from '../youtube-palyer';
 
 import {
   Container,
@@ -20,6 +22,7 @@ export interface MoviceCardProps {
   time: string;
   genre: string;
   year: number;
+  videoId: string;
   comingSoon?: boolean;
 }
 
@@ -30,12 +33,15 @@ export const MovieCard: React.FC<MoviceCardProps> = ({
   year,
   title,
   comingSoon,
+  videoId,
 }) => {
+  const [visible, setVisible] = useState(false);
   return (
+    <>
     <Container source={image} imageStyle={{ borderRadius: 30 }}>
       <BottomContainer>
         <ButtonContainer>
-          <TrailerButton>
+          <TrailerButton onPress={() => setVisible(true)}>
             <Ionicons name="play-circle-outline" size={24} color="#ff2435" />
             <ButtonText>Watch Trailer</ButtonText>
           </TrailerButton>
@@ -61,5 +67,7 @@ export const MovieCard: React.FC<MoviceCardProps> = ({
         </InfoContainer>
       </BottomContainer>
     </Container>
+    <YoutubePlayer videoId={videoId} isVisible={visible} onClose={() => setVisible(false)}  />
+    </>
   );
 };
